@@ -9,17 +9,32 @@
 import SwiftUI
 
 struct ContentView : View {
+    
+    @State var aAlert = false
+    
     var body: some View {
-        Button(action: buttonClick) {
-            Text("点击alert")
+        VStack{
+//            Text("Alert").tapAction {
+//                self.aAlert = true
+//                }.presentation($aAlert, alert:{ Alert(title: Text("Alert"))})
+            Button(action:buttonClick) {
+                Text("点击alert")
+                }.presentation($aAlert,alert: {
+                    Alert.init(title: Text("showAlert"), message: Text("showMsg"), dismissButton: Alert.Button.default(Text("确定")))
+                })
         }
+       
         
     }
     
     public func buttonClick(){
         print("点击按钮")
-        let alertView = Alert.init(title: Text("showAlert"), message: Text("showMsg"), dismissButton: Alert.Button.default(Text("确定")))
-    }
+        self.aAlert = true
+//        let alertView = Alert.init(title: Text("showAlert"), message: Text("showMsg"), dismissButton: Alert.Button.default(Text("确定")))
+//        presentation($aAlert,alert: {
+//            Alert(title: Text("Alert"))
+//        })
+        }
 }
 
 #if DEBUG
